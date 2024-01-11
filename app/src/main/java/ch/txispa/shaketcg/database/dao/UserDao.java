@@ -11,7 +11,6 @@ import java.util.List;
 
 import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.database.entity.User;
-import ch.txispa.shaketcg.database.relations.UserWithCharacters;
 
 @Dao
 public interface UserDao {
@@ -21,9 +20,10 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE username LIKE :username LIMIT 1")
     User findByUsername(String username);
 
-    @Transaction
-    @Query("SELECT * FROM user WHERE userId = :userId")
-    UserWithCharacters getUserWithCharacters(int userId);
+    @Query("SELECT * FROM character " +
+            "INNER JOIN UserCharacterCrossRef ON character.characterId = UserCharacterCrossRef.characterId " +
+            "WHERE UserCharacterCrossRef.userId = :userId")
+    List<Character> getCharactersByUserId(int userId);
 
     @Insert
     void insertAll(User... users);

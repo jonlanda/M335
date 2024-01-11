@@ -1,13 +1,9 @@
 package ch.txispa.shaketcg.database.entity;
 
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-
-import ch.txispa.shaketcg.database.entity.Character;
 
 @Entity
 public class User {

@@ -6,11 +6,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.txispa.shaketcg.database.AppDatabase;
@@ -24,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button buttonToCollection = findViewById(R.id.buttonToCollection);
         LinearLayout characterContainer = findViewById(R.id.character_container);
 
         AsyncTask.execute(() -> {
@@ -41,15 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         });
-    }
-
-    public void assignCharacterToUser(int userId, int characterId) {
-        UserCharacterCrossRef userCharacterCrossRef = new UserCharacterCrossRef();
-        userCharacterCrossRef.userId = userId;
-        userCharacterCrossRef.characterId = characterId;
-
-        AsyncTask.execute(() -> {
-            AppDatabase.getInstance(this).userCharacterCrossRefDao().insert(userCharacterCrossRef);;
+        buttonToCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to switch to ActivityB
+                Intent intent = new Intent(MainActivity.this, CollectionActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

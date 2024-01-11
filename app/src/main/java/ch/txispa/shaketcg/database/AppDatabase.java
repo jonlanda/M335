@@ -20,7 +20,7 @@ import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.database.entity.User;
 import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 
-@Database(entities = {User.class, Character.class, UserCharacterCrossRef.class}, version = 1)
+@Database(entities = {User.class, Character.class, UserCharacterCrossRef.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String  DATABASE_NAME = "shaketcg";
 
@@ -53,7 +53,8 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, DATABASE_NAME)
-                            .addCallback(roomDatabaseCallback) // Add the callback here
+                            .addCallback(roomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
