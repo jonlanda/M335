@@ -30,15 +30,19 @@ public class CollectionActivity extends AppCompatActivity {
         Button buttonToB = findViewById(R.id.buttonToMain);
         ListView characterListView = findViewById(R.id.character_list);
 
-
-        try {
-            assignCharacterToUser(1,1);
-        } catch (SQLiteConstraintException e) {
-            Log.e(TAG, "Duplicate relation: " + e.getMessage());
-        }
+        buttonToB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         AsyncTask.execute(() -> {
+            //assignCharacterToUser(1, 1);
+
             List<Character> charactersOwnedByUser = AppDatabase.getInstance(this).userDao().getCharactersByUserId(1);
+
             runOnUiThread(() -> {
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(
                         this,
@@ -50,13 +54,6 @@ public class CollectionActivity extends AppCompatActivity {
                 characterListView.setAdapter(adapter);
             });
         });
-        buttonToB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void assignCharacterToUser(int userId, int characterId) {
@@ -65,7 +62,11 @@ public class CollectionActivity extends AppCompatActivity {
         userCharacterCrossRef.characterId = characterId;
 
         AsyncTask.execute(() -> {
-            AppDatabase.getInstance(this).userCharacterCrossRefDao().insert(userCharacterCrossRef);;
+            try {
+                AppDatabase.getInstance(this).userCharacterCrossRefDao().insert(userCharacterCrossRef);
+            } catch (SQLiteConstraintException e) {
+                Log.e(TAG, "Duplicate relation: " + e.getMessage());
+            }
         });
     }
 

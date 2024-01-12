@@ -6,19 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- activity_main.xml -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/character_container"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:context=".RandomCharacterActivity">
 
+        <Button
+            android:id="@+id/randomCharacterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Random Character" />
+
+        <TextView
+            android:id="@+id/randomCharacterInfoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingTop="16dp"
+            android:textSize="18sp" />
         <Button
             android:id="@+id/buttonToCollection"
             android:layout_width="wrap_content"

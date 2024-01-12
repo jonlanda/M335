@@ -1,60 +1,108 @@
 package ch.txispa.shaketcg;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
+import java.util.Random;
 
 import ch.txispa.shaketcg.database.AppDatabase;
 import ch.txispa.shaketcg.database.entity.Character;
-import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView randomCharacterInfoTextView;
+
+    CharacterService characterService;
+    Boolean mBound = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Button buttonToCollection = findViewById(R.id.buttonToCollection);
-        LinearLayout characterContainer = findViewById(R.id.character_container);
 
-        AsyncTask.execute(() -> {
-            List<Character> allCharacters = AppDatabase.getInstance(this).characterDao().getAll();
-            runOnUiThread(() -> {
-                for (Character character : allCharacters) {
-                    TextView characterName = new TextView(this);
-                    characterName.setText(character.name);
-                    characterName.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
-                    characterName.setPadding(10, 10, 10, 10); // Optional for padding
-
-                    characterContainer.addView(characterName);
-                }
-            });
-        });
         buttonToCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an Intent to switch to ActivityB
                 Intent intent = new Intent(MainActivity.this, CollectionActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, CharacterService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
+        randomCharacterInfoTextView = findViewById(R.id.randomCharacterInfoTextView);
+        Button randomCharacterButton = findViewById(R.id.randomCharacterButton);
+
+        randomCharacterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AsyncTask.execute(() -> {
+                    displayRandomCharacter();
+                });
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unbindService(connection);
+        mBound = false;
+    }
+
+    private void displayRandomCharacter() {
+        if (mBound) {
+            Character randomCharacter = characterService.randomCharacter();
+
+            runOnUiThread(() -> {
+                if (randomCharacter != null) {
+                    String characterInfo = "Name: " + randomCharacter.getName() + "\n";
+                    characterInfo += "Rarity: " + randomCharacter.getRarity() + "\n";
+                    characterInfo += "Series: " + randomCharacter.getSeries();
+
+                    randomCharacterInfoTextView.setText(characterInfo);
+                } else {
+                    randomCharacterInfoTextView.setText("No characters found in the database.");
+                }
+            });
+        } else {
+            randomCharacterInfoTextView.setText("Service not working!");
+        }
+    }
+
+
+    private final ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            CharacterService.LocalBinder binder = (CharacterService.LocalBinder) service;
+            characterService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
+
+
 }

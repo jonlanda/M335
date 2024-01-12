@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class User {
     @PrimaryKey
-    public int userId;
+    public int id;
 
     @ColumnInfo(name = "username")
     public String username;
@@ -17,11 +17,11 @@ public class User {
     public int money;
 
     public int getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getUsername() {

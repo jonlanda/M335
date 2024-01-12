@@ -14,7 +14,7 @@ public class Users {
         User defaultUser = new User();
         defaultUser.username = "user";
         defaultUser.money = 100;
-        defaultUser.userId = 1;
+        defaultUser.id = 1;
         userDao.insertAll(defaultUser);
     }
 }

@@ -20,7 +20,7 @@ public interface CharacterDao {
     @Query("SELECT * FROM character WHERE name LIKE :name LIMIT 1")
     Character findByName(String name);
 
-    @Query("SELECT * FROM character WHERE characterId LIKE :characterId LIMIT 1")
+    @Query("SELECT * FROM character WHERE id LIKE :characterId LIMIT 1")
     Character getCharacterById(int characterId);
 
     @Query("SELECT * FROM character GROUP BY series")

@@ -21,7 +21,7 @@ public interface UserDao {
     User findByUsername(String username);
 
     @Query("SELECT * FROM character " +
-            "INNER JOIN UserCharacterCrossRef ON character.characterId = UserCharacterCrossRef.characterId " +
+            "INNER JOIN UserCharacterCrossRef ON character.id = UserCharacterCrossRef.characterId " +
             "WHERE UserCharacterCrossRef.userId = :userId")
     List<Character> getCharactersByUserId(int userId);
 

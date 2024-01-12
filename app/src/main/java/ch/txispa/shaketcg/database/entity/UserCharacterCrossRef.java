@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(
         foreignKeys = {
-                @ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "userId"),
-                @ForeignKey(entity = Character.class, parentColumns = "characterId", childColumns = "characterId")
+                @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId"),
+                @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "characterId")
         },
         indices = {
                 @Index("userId"),
