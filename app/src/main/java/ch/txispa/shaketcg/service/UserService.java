@@ -47,4 +47,12 @@ public class UserService extends Service {
         }
         return names;
     }
+
+    public void updateMoney(int id, int amount) {
+        try{
+            AppDatabase.getInstance(this).userDao().updateMoney(id, amount);
+        } catch (SQLiteConstraintException e) {
+            Log.e(TAG, "Error while updating money: " + e.getMessage());
+        }
+    }
 }

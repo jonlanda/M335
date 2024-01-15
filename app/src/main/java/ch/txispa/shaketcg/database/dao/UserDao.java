@@ -25,6 +25,9 @@ public interface UserDao {
             "WHERE UserCharacterCrossRef.userId = :userId")
     List<Character> getCharactersByUserId(int userId);
 
+    @Query("UPDATE user SET money = :newMoneyValue WHERE id = :userId")
+    void updateMoney(int userId, int newMoneyValue);
+
     @Insert
     void insertAll(User... users);
 

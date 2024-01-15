@@ -68,8 +68,8 @@ public class Characters {
         Character gandalf = new Character();
         gandalf.name = "Gandalf";
         gandalf.rarity = "legendary";
-        gandalf.series = "Herr der Ringe";
-        gandalf.worth = 1000000;
+        gandalf.series = "Lord of the rings";
+        gandalf.worth = 100;
         gandalf.pictureLink = "https://media2.giphy.com/media/TcdpZwYDPlWXC/giphy.gif";
         characterDao.insertAll(gandalf);
 

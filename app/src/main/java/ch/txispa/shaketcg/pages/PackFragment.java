@@ -89,7 +89,7 @@ public class PackFragment extends Fragment {
         if (mBound) {
             Character randomCharacter = characterService.randomCharacter();
 
-            getActivity().runOnUiThread(() -> {
+            requireActivity().runOnUiThread(() -> {
                 if (randomCharacter != null) {
                     PackedFragment targetFragment = new PackedFragment();
 
@@ -97,13 +97,15 @@ public class PackFragment extends Fragment {
                     args.putParcelable("randomCharacter", randomCharacter);
                     targetFragment.setArguments(args);
 
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment_container, targetFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
-                    characterService.assignCharacterToUser(1, randomCharacter.getId());
                 }
             });
+        } else {
+            //nothing
         }
     }
+
 }
