@@ -9,12 +9,15 @@ import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import ch.txispa.shaketcg.customs.ShakeDetector;
 import ch.txispa.shaketcg.service.CharacterService;
@@ -22,32 +25,17 @@ import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.database.entity.Character;
 
 public class PackFragment extends Fragment {
-    private TextView randomCharacterInfoTextView;
     private CharacterService characterService;
     private boolean mBound = false;
     private ShakeDetector shakeDetector;
     private SensorManager sensorManager;
 
-    private final ServiceConnection connection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            CharacterService.LocalBinder binder = (CharacterService.LocalBinder) service;
-            characterService = binder.getService();
-            mBound = true;
-        }
 
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pack_fragment, container, false);
-
-        randomCharacterInfoTextView = view.findViewById(R.id.randomCharacterInfoTextView);
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         shakeDetector = new ShakeDetector();
@@ -63,6 +51,20 @@ public class PackFragment extends Fragment {
 
         return view;
     }
+
+    private final ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            CharacterService.LocalBinder binder = (CharacterService.LocalBinder) service;
+            characterService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 
     @Override
     public void onStart() {
@@ -81,7 +83,6 @@ public class PackFragment extends Fragment {
         }
         sensorManager.unregisterListener(shakeDetector);
         super.onStop();
-
     }
 
     private void displayRandomCharacter() {
@@ -90,17 +91,19 @@ public class PackFragment extends Fragment {
 
             getActivity().runOnUiThread(() -> {
                 if (randomCharacter != null) {
-                    String characterInfo = "Name: " + randomCharacter.getName() + "\n" +
-                            "Rarity: " + randomCharacter.getRarity() + "\n" +
-                            "Series: " + randomCharacter.getSeries();
-                    randomCharacterInfoTextView.setText(characterInfo);
+                    PackedFragment targetFragment = new PackedFragment();
+
+                    Bundle args = new Bundle();
+                    args.putParcelable("randomCharacter", randomCharacter);
+                    targetFragment.setArguments(args);
+
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, targetFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                     characterService.assignCharacterToUser(1, randomCharacter.getId());
-                } else {
-                    randomCharacterInfoTextView.setText("No characters found in the database.");
                 }
             });
-        } else {
-            randomCharacterInfoTextView.setText("Service not working!");
         }
     }
 }

@@ -12,4 +12,8 @@
         android:id="@+id/packFragment"
         android:name="ch.txispa.shaketcg.pages.PackFragment"
         android:label="PackFragment" />
+    <fragment
+        android:id="@+id/packedFragment"
+        android:name="ch.txispa.shaketcg.pages.PackedFragment"
+        android:label="PackedFragment" />
 </navigation>
