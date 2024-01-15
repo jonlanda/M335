@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -10,31 +10,24 @@
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".RandomCharacterActivity"
-        android:textAlignment="center"
-        android:gravity="center_horizontal">
+        android:textAlignment="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/shake_instruction"
+            android:text="@string/pack_title"
             android:textAlignment="center"
             android:textSize="40sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="369dp"
-            android:layout_height="434dp"
-            android:contentDescription="@string/pack_image_description"
-            android:src="@drawable/packcover" />
-
         <TextView
-            android:layout_width="378dp"
+            android:id="@+id/randomCharacterInfoTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pack_price"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="normal" />
-
+            android:text=""
+            android:paddingTop="16dp"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,10 @@
     <string name="title_collection">Collection</string>
     <string name="title_trade">Trade</string>
     <string name="character_image_description">Character Image</string>
-    <string name="shake_instruction">Shake your phone to buy the pack!</string>
+    <string name="shake_instruction">Shake your phone to open the pack!</string>
+    <string name="pack_price">$100</string>
     <string name="collection_title">Your Collection</string>
+    <string name="pack_title">You Packed:</string>
+    <string name="pack_image_description">pack cover</string>
 
 </resources>
