@@ -6,31 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".RandomCharacterActivity">
-
-        <Button
-            android:id="@+id/randomCharacterButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get Random Character" />
-
-        <TextView
-            android:id="@+id/randomCharacterInfoTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:paddingTop="16dp"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"/>
 
     <!-- menu made with ChatGPT help -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

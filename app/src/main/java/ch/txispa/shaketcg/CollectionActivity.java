@@ -27,20 +27,42 @@ public class CollectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collection_view);
 
-        ListView characterListView = findViewById(R.id.character_list);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.collectionFragment){
+                return true;
+            } else if (item.getItemId() == R.id.packFragment) {
+                Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
+            return super.onOptionsItemSelected(item);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if(item.getItemId() == R.id.navigation_collection){
+            if(item.getItemId() == R.id.collectionFragment){
                 return true;
-            } else if (item.getItemId() == R.id.navigation_home) {
+            } else if (item.getItemId() == R.id.packFragment) {
                 Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
-                return true;
             }
-            return false;
+            return super.onOptionsItemSelected(item);
         });
+
+        updateCollection();
+    }
+
+    private void updateCollection() {
+        ListView characterListView = findViewById(R.id.character_list);
 
         AsyncTask.execute(() -> {
             List<Character> charactersOwnedByUser = AppDatabase.getInstance(this).userDao().getCharactersByUserId(1);
@@ -57,7 +79,6 @@ public class CollectionActivity extends AppCompatActivity {
             });
         });
     }
-
     private List<String> getCharacterNames(List<Character> characters) {
         List<String> names = new ArrayList<>();
         for (Character character : characters) {

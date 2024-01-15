@@ -24,7 +24,12 @@
         <activity android:name=".CollectionActivity" android:exported="true">
         </activity>
         <service
-            android:name=".CharacterService"
+            android:name=".service.CharacterService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+        <service
+            android:name=".service.UserService"
             android:enabled="true"
             android:exported="false">
         </service>

@@ -1,4 +1,4 @@
-package ch.txispa.shaketcg;
+package ch.txispa.shaketcg.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -23,7 +23,7 @@ public class CharacterService extends Service {
     private static final String TAG = "CharacterService";
 
     public class LocalBinder extends Binder {
-        CharacterService getService() {
+        public CharacterService getService() {
             return CharacterService.this;
         }
     }
@@ -51,9 +51,11 @@ public class CharacterService extends Service {
         AsyncTask.execute(() -> {
             try {
                 AppDatabase.getInstance(this).userCharacterCrossRefDao().insert(userCharacterCrossRef);
+                Log.i(TAG, "Character Assigned");
             } catch (SQLiteConstraintException e) {
                 Log.e(TAG, "Duplicate relation: " + e.getMessage());
             }
         });
     }
+
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/packFragment">
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="ch.txispa.shaketcg.pages.CollectionFragment"
+        android:label="CollectionFragment" />
+    <fragment
+        android:id="@+id/packFragment"
+        android:name="ch.txispa.shaketcg.pages.PackFragment"
+        android:label="PackFragment" />
+</navigation>
