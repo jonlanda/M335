@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import ch.txispa.shaketcg.R;
+import ch.txispa.shaketcg.database.entity.Character;
 
 public class CustomArrayAdapter extends ArrayAdapter<Character> {
     private Context mContext;
@@ -42,7 +43,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Character> {
         Character character = getItem(position);
 
         if (character != null) {
-            Picasso.get().load(character.getImageLink()).placeholder(R.drawable.collection_icon).into(characterImageView);
+            Picasso.get().load(character.getPictureLink()).placeholder(R.drawable.collection_icon).into(characterImageView);
             characterNameTextView.setText(character.getName());
             characterSeriesTextView.setText("Series: " + character.getSeries());
             characterRarityTextView.setText("Rarity: " + character.getRarity());
