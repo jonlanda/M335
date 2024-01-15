@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import ch.txispa.shaketcg.customs.ShakeDetector;
 import ch.txispa.shaketcg.service.CharacterService;
@@ -90,22 +92,25 @@ public class PackFragment extends Fragment {
             Character randomCharacter = characterService.randomCharacter();
 
             requireActivity().runOnUiThread(() -> {
-                if (randomCharacter != null) {
-                    PackedFragment targetFragment = new PackedFragment();
+                if (isAdded()) {
+                    if (randomCharacter != null) {
+                        PackedFragment targetFragment = new PackedFragment();
 
-                    Bundle args = new Bundle();
-                    args.putParcelable("randomCharacter", randomCharacter);
-                    targetFragment.setArguments(args);
+                        Bundle args = new Bundle();
+                        args.putParcelable("randomCharacter", randomCharacter);
+                        targetFragment.setArguments(args);
 
-                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, targetFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                        NavController navController = NavHostFragment.findNavController(this);
+                        navController.navigate(R.id.action_packFragment_to_packedFragment, args);
+                    }
+                } else {
+                    Log.d("PackFragment", "Fragment not added to its activity.");
                 }
             });
         } else {
-            //nothing
+            Log.e("PackFragment", "Service not bound");
         }
     }
+
 
 }

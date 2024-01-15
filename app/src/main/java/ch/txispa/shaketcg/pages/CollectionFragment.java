@@ -42,6 +42,15 @@ public class CollectionFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(!mBound) {
+            Intent intent = new Intent(getContext(), UserService.class);
+            getContext().bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        }
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         if (mBound) {

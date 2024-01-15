@@ -16,7 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.database.entity.Character;
@@ -131,35 +134,33 @@ public class PackedFragment extends Fragment {
     }
 
     private void buttonOptions(Character randomCharacter) {
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        continueButton.setOnClickListener(v -> {
+            if (isAdded() && characterBound) {
                 characterService.assignCharacterToUser(1, randomCharacter.getId());
-                PackFragment targetFragment = new PackFragment();
-
-                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, targetFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                navigateToPackFragment();
             }
         });
 
-        sellButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        sellButton.setOnClickListener(v -> {
+            if (isAdded() && userBound) {
                 AsyncTask.execute(() -> {
                     int worth = randomCharacter.getWorth();
                     userService.updateMoney(1, worth);
-
-                    PackFragment targetFragment = new PackFragment();
-
-                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, targetFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    navigateToPackFragment();
                 });
             }
         });
+
     }
+
+    private void navigateToPackFragment() {
+        if(isAdded()) {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_packedFragment_to_packFragment);
+        } else {
+            Log.d("PackedFragment", "Fragment not added to its activity.");
+        }
+    }
+
 }
 

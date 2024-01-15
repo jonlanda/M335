@@ -11,9 +11,17 @@
     <fragment
         android:id="@+id/packFragment"
         android:name="ch.txispa.shaketcg.pages.PackFragment"
-        android:label="PackFragment" />
+        android:label="PackFragment" >
+        <action
+            android:id="@+id/action_packFragment_to_packedFragment"
+            app:destination="@id/packedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packedFragment"
         android:name="ch.txispa.shaketcg.pages.PackedFragment"
-        android:label="PackedFragment" />
+        android:label="PackedFragment" >
+        <action
+            android:id="@+id/action_packedFragment_to_packFragment"
+            app:destination="@id/packFragment" />
+    </fragment>
 </navigation>
