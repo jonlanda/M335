@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ShakeTCG</string>
+    <string name="packs_menu">Packs</string>
+    <string name="title_collection">Collection</string>
+    <string name="title_trade">Trade</string>
+
 </resources>

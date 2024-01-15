@@ -29,12 +29,17 @@
             android:text=""
             android:paddingTop="16dp"
             android:textSize="18sp" />
-        <Button
-            android:id="@+id/buttonToCollection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go to Collection"/>
 
     </LinearLayout>
 
+    <!-- menu made with ChatGPT help -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

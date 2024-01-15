@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,27 +22,27 @@ import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 
 public class CollectionActivity extends AppCompatActivity {
-    private static final String TAG = "CollectionActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collection_view);
 
-        Button buttonToB = findViewById(R.id.buttonToMain);
         ListView characterListView = findViewById(R.id.character_list);
 
-        buttonToB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.navigation_collection){
+                return true;
+            } else if (item.getItemId() == R.id.navigation_home) {
                 Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
                 startActivity(intent);
+                return true;
             }
+            return false;
         });
 
         AsyncTask.execute(() -> {
-            //assignCharacterToUser(1, 1);
-
             List<Character> charactersOwnedByUser = AppDatabase.getInstance(this).userDao().getCharactersByUserId(1);
 
             runOnUiThread(() -> {
@@ -53,20 +55,6 @@ public class CollectionActivity extends AppCompatActivity {
 
                 characterListView.setAdapter(adapter);
             });
-        });
-    }
-
-    public void assignCharacterToUser(int userId, int characterId) {
-        UserCharacterCrossRef userCharacterCrossRef = new UserCharacterCrossRef();
-        userCharacterCrossRef.userId = userId;
-        userCharacterCrossRef.characterId = characterId;
-
-        AsyncTask.execute(() -> {
-            try {
-                AppDatabase.getInstance(this).userCharacterCrossRefDao().insert(userCharacterCrossRef);
-            } catch (SQLiteConstraintException e) {
-                Log.e(TAG, "Duplicate relation: " + e.getMessage());
-            }
         });
     }
 
