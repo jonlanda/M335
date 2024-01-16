@@ -35,13 +35,30 @@ public class CharacterService extends Service {
     }
 
     public Character randomCharacter() {
-        List<Character> allCharacters = AppDatabase.getInstance(this).characterDao().getAll();
+        double commonChance = 0.50;
+        double rareChance = 0.35;
+        double epicChance = 0.12;
 
         Random random = new Random();
-        int randomIndex = random.nextInt(allCharacters.size());
+        double randomNumber = random.nextDouble();
 
-        return allCharacters.get(randomIndex);
+        String selectedRarity;
+        if (randomNumber < commonChance) {
+            selectedRarity = "common";
+        } else if (randomNumber < commonChance + rareChance) {
+            selectedRarity = "rare";
+        } else if (randomNumber < commonChance + rareChance + epicChance) {
+            selectedRarity = "epic";
+        } else {
+            selectedRarity = "legendary";
+        }
+
+        List<Character> charactersOfSelectedRarity = AppDatabase.getInstance(this).characterDao().getAllOfRarity(selectedRarity);
+
+        int randomIndex = random.nextInt(charactersOfSelectedRarity.size());
+        return charactersOfSelectedRarity.get(randomIndex);
     }
+
 
     public void assignCharacterToUser(int userId, int characterId) {
         UserCharacterCrossRef userCharacterCrossRef = new UserCharacterCrossRef();

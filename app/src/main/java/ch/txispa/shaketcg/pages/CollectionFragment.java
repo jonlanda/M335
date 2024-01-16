@@ -1,5 +1,6 @@
 package ch.txispa.shaketcg.pages;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -108,14 +109,28 @@ public class CollectionFragment extends Fragment implements CustomArrayAdapter.O
     @Override
     public void onSellButtonClick(Character character) {
         if (character != null) {
-            AsyncTask.execute(() -> {
-                int characterWorth = character.getWorth();
-                userService.updateMoney(1, characterWorth);
-                userService.sellCharacter(character.getId());
-                getActivity().runOnUiThread(() -> {
-                    updateCollection(getView());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Confirm Sale");
+            builder.setMessage("Are you sure you want to sell " + character.getName() + "?");
+
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                AsyncTask.execute(() -> {
+                    int characterWorth = character.getWorth();
+                    int userAccount = userService.getUser().getMoney();
+                    userService.updateMoney(1, characterWorth + userAccount);
+                    userService.sellCharacter(character.getId());
+                    getActivity().runOnUiThread(() -> {
+                        updateCollection(getView());
+                    });
                 });
             });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
+
 }

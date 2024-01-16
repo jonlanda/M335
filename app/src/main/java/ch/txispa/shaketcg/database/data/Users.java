@@ -13,7 +13,7 @@ public class Users {
     public void defaultData() {
         User defaultUser = new User();
         defaultUser.username = "user";
-        defaultUser.money = 100;
+        defaultUser.money = 100000;
         defaultUser.id = 1;
         userDao.insertAll(defaultUser);
     }

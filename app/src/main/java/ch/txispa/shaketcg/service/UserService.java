@@ -14,6 +14,7 @@ import java.util.List;
 
 import ch.txispa.shaketcg.database.AppDatabase;
 import ch.txispa.shaketcg.database.entity.Character;
+import ch.txispa.shaketcg.database.entity.User;
 import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 
 public class UserService extends Service {
@@ -37,6 +38,15 @@ public class UserService extends Service {
             return AppDatabase.getInstance(this).userDao().getCharactersByUserId(1);
         } catch (SQLiteConstraintException e) {
             Log.e(TAG, "Error while getting characters: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public User getUser() {
+        try {
+            return AppDatabase.getInstance(this).userDao().findByUsername("user");
+        } catch (SQLiteConstraintException e) {
+            Log.e(TAG, "Error while getting user: " + e.getMessage());
             return null;
         }
     }

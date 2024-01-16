@@ -36,6 +36,10 @@ public interface CharacterDao {
     List<Character> getCharacterFromSeries(String series);
 
     @Transaction
+    @Query("SELECT * FROM character WHERE rarity LIKE :rarity")
+    List<Character> getAllOfRarity(String rarity);
+
+    @Transaction
     @Insert
     void insertAll(Character... characters);
 
