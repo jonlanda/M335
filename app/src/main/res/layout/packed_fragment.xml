@@ -23,11 +23,13 @@
 
         <ImageView
             android:id="@+id/packed_character_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="473dp"
+            android:contentDescription="@string/character_image_description"
+            android:scaleType="fitCenter"
             android:src="@drawable/collection_icon"
-            android:contentDescription="@string/character_image_description" />
+            android:textAlignment="center" />
+
 
         <TextView
             android:id="@+id/randomCharacterInfoTextView"

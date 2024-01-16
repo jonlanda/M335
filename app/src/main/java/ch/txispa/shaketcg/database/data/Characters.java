@@ -76,7 +76,7 @@ public class Characters {
         Character ahsoka = new Character();
         ahsoka.name = "Ahsoka Tano";
         ahsoka.rarity = "rare";
-        ahsoka.series = "Ahsoka";
+        ahsoka.series = "Star Wars";
         ahsoka.worth = 30;
         ahsoka.pictureLink = "https://lumiere-a.akamaihd.net/v1/images/who-is-ahsoka-tano-article-feature_60dc019d.jpeg?region=350,0,900,900";
         characterDao.insertAll(ahsoka);
@@ -200,5 +200,61 @@ public class Characters {
         jackWilder.worth = 10;
         jackWilder.pictureLink = "https://i.quotev.com/fu7gs3gyaaaa.jpg";
         characterDao.insertAll(jackWilder);
+
+        Character gojouSatoru = new Character();
+        gojouSatoru.name = "Satoru Gojou";
+        gojouSatoru.rarity = "legendary";
+        gojouSatoru.series = "Jujutsu Kaisen";
+        gojouSatoru.worth = 105;
+        gojouSatoru.pictureLink = "https://static.wikia.nocookie.net/jujutsu-kaisen/images/e/ef/Satoru_Gojo_%28Anime_2%29.png/revision/latest?cb=20201025013634";
+        characterDao.insertAll(gojouSatoru);
+
+        Character inosuke = new Character();
+        inosuke.name = "Inosuke Hashibira";
+        inosuke.rarity = "rare";
+        inosuke.series = "Demon Slayer";
+        inosuke.worth = 23;
+        inosuke.pictureLink = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6c618e52-a2bc-43c6-8cb9-4dbdd6532e9f/dfkipsq-c6db3ad4-8084-418f-9502-0cb3c94c02cd.png/v1/fill/w_1280,h_1811,q_80,strp/inosuke_hashibira__2022__by_baby8stef_dfkipsq-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzZjNjE4ZTUyLWEyYmMtNDNjNi04Y2I5LTRkYmRkNjUzMmU5ZlwvZGZraXBzcS1jNmRiM2FkNC04MDg0LTQxOGYtOTUwMi0wY2IzYzk0YzAyY2QucG5nIiwiaGVpZ2h0IjoiPD0xODExIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uud2F0ZXJtYXJrIl0sIndtayI6eyJwYXRoIjoiXC93bVwvNmM2MThlNTItYTJiYy00M2M2LThjYjktNGRiZGQ2NTMyZTlmXC9iYWJ5OHN0ZWYtNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.7mt9tpeHbOcbngNRv5MlpD0tWZBHeSv2s_6dRFY5Khc";
+        characterDao.insertAll(inosuke);
+
+        Character takiTachibana = new Character();
+        takiTachibana.name = "Taki Tachibana";
+        takiTachibana.rarity = "rare";
+        takiTachibana.series = "Your Name";
+        takiTachibana.worth = 24;
+        takiTachibana.pictureLink = "https://static.wikia.nocookie.net/kiminonawa/images/a/a8/Taki_Tachibana_2016.png/revision/latest?cb=20181114200034";
+        characterDao.insertAll(takiTachibana);
+
+        Character mitsuhaMiyamizu = new Character();
+        mitsuhaMiyamizu.name = "Mitsuha Miyamizu";
+        mitsuhaMiyamizu.rarity = "epic";
+        mitsuhaMiyamizu.series = "Your Name";
+        mitsuhaMiyamizu.worth = 53;
+        mitsuhaMiyamizu.pictureLink = "https://static.wikia.nocookie.net/kiminonawa/images/5/5d/Mitsuha_Miyamizu_2013.png/revision/latest?cb=20181114193828";
+        characterDao.insertAll(mitsuhaMiyamizu);
+
+        Character mob = new Character();
+        mob.name = "Shigeo 'Mob' Kageyama";
+        mob.rarity = "common";
+        mob.series = "Mob Psycho 100";
+        mob.worth = 9;
+        mob.pictureLink = "https://static.wikia.nocookie.net/deathbattle/images/a/a4/Portrait.mob.png/revision/latest/thumbnail/width/360/height/450?cb=20221223234912";
+        characterDao.insertAll(mob);
+
+        Character mizu = new Character();
+        mizu.name = "Mizu";
+        mizu.rarity = "common";
+        mizu.series = "Blue Eye Samurai";
+        mizu.worth = 11;
+        mizu.pictureLink = "https://m.media-amazon.com/images/M/MV5BNWM0ZGE0NGYtYmIwYi00NzBkLWExZDgtNThjMTUwYzA5ZjdkXkEyXkFqcGdeQXVyMTMzNzIyNDc1._V1_.jpg";
+        characterDao.insertAll(mizu);
+
+        Character isagiYoichi = new Character();
+        isagiYoichi.name = "Yoichi Isagi";
+        isagiYoichi.rarity = "common";
+        isagiYoichi.series = "Blue Lock";
+        isagiYoichi.worth = 9;
+        isagiYoichi.pictureLink = "https://cdn.myanimelist.net/r/200x268/images/characters/4/498285.jpg?s=052f0022b7ba9d5ab9114698a6cb75a8";
+        characterDao.insertAll(isagiYoichi);
     }
 }
