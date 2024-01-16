@@ -146,7 +146,9 @@ public class PackedFragment extends Fragment {
                 AsyncTask.execute(() -> {
                     int worth = randomCharacter.getWorth();
                     userService.updateMoney(1, worth);
-                    navigateToPackFragment();
+                    getActivity().runOnUiThread(() -> {
+                        navigateToPackFragment();
+                    });
                 });
             }
         });

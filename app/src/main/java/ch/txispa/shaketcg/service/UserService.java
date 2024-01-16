@@ -14,6 +14,7 @@ import java.util.List;
 
 import ch.txispa.shaketcg.database.AppDatabase;
 import ch.txispa.shaketcg.database.entity.Character;
+import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 
 public class UserService extends Service {
     private final IBinder binder = new LocalBinder();
@@ -53,6 +54,16 @@ public class UserService extends Service {
             AppDatabase.getInstance(this).userDao().updateMoney(id, amount);
         } catch (SQLiteConstraintException e) {
             Log.e(TAG, "Error while updating money: " + e.getMessage());
+        }
+    }
+
+    public void sellCharacter(int characterId) {
+        try{
+            UserCharacterCrossRef deletedRef = AppDatabase.getInstance(this).userCharacterCrossRefDao().getUserCharacterCrossRef(1, characterId);
+            AppDatabase.getInstance(this).userCharacterCrossRefDao().delete(deletedRef);
+            Log.e(TAG, "sold character with id: " + characterId);
+        } catch (SQLiteConstraintException e) {
+            Log.e(TAG, "Error while selling character: " + e.getMessage());
         }
     }
 }

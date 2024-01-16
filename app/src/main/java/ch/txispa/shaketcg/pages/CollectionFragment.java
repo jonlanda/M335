@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -19,14 +20,18 @@ import java.util.List;
 
 import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.customs.CustomArrayAdapter;
+import ch.txispa.shaketcg.database.AppDatabase;
 import ch.txispa.shaketcg.database.entity.Character;
+import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 import ch.txispa.shaketcg.service.UserService;
 
-public class CollectionFragment extends Fragment {
+public class CollectionFragment extends Fragment implements CustomArrayAdapter.OnSellButtonClickListener {
     private UserService userService;
     private boolean mBound = false;
 
     private static String TAG = "CollectionFragment";
+
+    private Button sellButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,13 +96,26 @@ public class CollectionFragment extends Fragment {
                     CustomArrayAdapter adapter = new CustomArrayAdapter(
                             getContext(),
                             R.layout.list_item_character,
-                            charactersOwnedByUser
+                            charactersOwnedByUser,
+                            this
                     );
-
                     characterListView.setAdapter(adapter);
                 });
             });
         }
     }
 
+    @Override
+    public void onSellButtonClick(Character character) {
+        if (character != null) {
+            AsyncTask.execute(() -> {
+                int characterWorth = character.getWorth();
+                userService.updateMoney(1, characterWorth);
+                userService.sellCharacter(character.getId());
+                getActivity().runOnUiThread(() -> {
+                    updateCollection(getView());
+                });
+            });
+        }
+    }
 }

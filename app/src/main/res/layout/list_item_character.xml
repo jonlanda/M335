@@ -4,12 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:textAlignment="center">
 
     <ImageView
         android:id="@+id/character_image"
+        android:scaleType="centerCrop"
         android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
         android:src="@drawable/collection_icon"
         android:contentDescription="@string/character_image_description" />
@@ -44,4 +46,20 @@
             android:layout_height="wrap_content"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/character_sell_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/sellicon"
+        android:drawablePadding="8dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="center_vertical"/>
 </LinearLayout>

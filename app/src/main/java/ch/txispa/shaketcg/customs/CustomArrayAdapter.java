@@ -1,10 +1,12 @@
 package ch.txispa.shaketcg.customs;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +18,21 @@ import java.util.List;
 
 import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.database.entity.Character;
+import ch.txispa.shaketcg.pages.CollectionFragment;
 
 public class CustomArrayAdapter extends ArrayAdapter<Character> {
     private Context mContext;
     private int mResource;
+    private OnSellButtonClickListener mListener;
+    public interface OnSellButtonClickListener {
+        void onSellButtonClick(Character character);
+    }
 
-    public CustomArrayAdapter(Context context, int resource, List<Character> characters) {
+    public CustomArrayAdapter(Context context, int resource, List<Character> characters, OnSellButtonClickListener listener) {
         super(context, resource, characters);
         mContext = context;
         mResource = resource;
+        mListener = listener;
     }
 
     @NonNull
@@ -49,6 +57,18 @@ public class CustomArrayAdapter extends ArrayAdapter<Character> {
             characterRarityTextView.setText("Rarity: " + character.getRarity());
             characterWorthTextView.setText("Worth: $" + character.getWorth());
         }
+
+        Button sellButton = convertView.findViewById(R.id.character_sell_button);
+        sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("CustomArrayAdapter", "sell button clicked");
+                if (mListener != null) {
+                    Log.e("CustomArrayAdapter", "position: " + position);
+                    mListener.onSellButtonClick(getItem(position));
+                }
+            }
+        });
 
         return convertView;
     }
