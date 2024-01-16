@@ -1,6 +1,5 @@
 package ch.txispa.shaketcg.database.data;
 
-import ch.txispa.shaketcg.database.dao.CharacterDao;
 import ch.txispa.shaketcg.database.dao.UserDao;
 import ch.txispa.shaketcg.database.entity.User;
 

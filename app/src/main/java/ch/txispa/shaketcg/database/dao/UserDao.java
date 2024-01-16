@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.txispa.shaketcg.database.entity.Character;

@@ -1,11 +1,6 @@
 package ch.txispa.shaketcg;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.AsyncTask;
-import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,9 +8,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import ch.txispa.shaketcg.database.AppDatabase;
-import ch.txispa.shaketcg.database.dao.UserDao;
 import ch.txispa.shaketcg.database.entity.User;
-import ch.txispa.shaketcg.service.UserService;
 
 public class UpdateAccountWorker extends Worker {
 

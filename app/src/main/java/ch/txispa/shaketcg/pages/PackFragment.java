@@ -10,7 +10,6 @@ import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +17,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.customs.ShakeDetector;
+import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.database.entity.User;
 import ch.txispa.shaketcg.service.CharacterService;
-import ch.txispa.shaketcg.R;
-import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.service.UserService;
 
 public class PackFragment extends Fragment {

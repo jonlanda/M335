@@ -16,17 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.squareup.picasso.Picasso;
 
 import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.database.entity.Character;
 import ch.txispa.shaketcg.service.CharacterService;
 import ch.txispa.shaketcg.service.UserService;
-
-import com.squareup.picasso.Picasso;
 
 public class PackedFragment extends Fragment {
     private TextView randomCharacterInfoTextView;

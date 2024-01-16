@@ -21,9 +21,7 @@ import java.util.List;
 
 import ch.txispa.shaketcg.R;
 import ch.txispa.shaketcg.customs.CustomArrayAdapter;
-import ch.txispa.shaketcg.database.AppDatabase;
 import ch.txispa.shaketcg.database.entity.Character;
-import ch.txispa.shaketcg.database.entity.UserCharacterCrossRef;
 import ch.txispa.shaketcg.service.UserService;
 
 public class CollectionFragment extends Fragment implements CustomArrayAdapter.OnSellButtonClickListener {

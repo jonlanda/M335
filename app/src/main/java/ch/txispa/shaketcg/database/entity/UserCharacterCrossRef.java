@@ -1,6 +1,5 @@
 package ch.txispa.shaketcg.database.entity;
 
-import androidx.core.content.pm.PermissionInfoCompat;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
