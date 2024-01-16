@@ -54,7 +54,7 @@ public class Characters {
         batMan.rarity = "epic";
         batMan.series = "Batman";
         batMan.worth = 50;
-        batMan.pictureLink = "https://static.wikia.nocookie.net/p_/images/f/fd/Batman%28Prime_Earth%29.jpg/revision/latest?cb=20230718090804&path-prefix=protagonist";
+        batMan.pictureLink = "https://static.wikia.nocookie.net/p__/images/f/fd/Batman_%28Prime_Earth%29.jpg/revision/latest?cb=20230718090804&path-prefix=protagonist";
         characterDao.insertAll(batMan);
 
         Character jamesBond = new Character();
@@ -62,7 +62,7 @@ public class Characters {
         jamesBond.rarity = "common";
         jamesBond.series = "James Bond";
         jamesBond.worth = 7;
-        jamesBond.pictureLink = "https://m.media-amazon.com/images/M/MV5BYWQ2NzQ1NjktMzNkNS00MGY1LTgwMmMtYTllYTI5YzNmMmE0XkEyXkFqcGdeQXVyMjM4NTM5NDY@.V1.jpg";
+        jamesBond.pictureLink = "https://m.media-amazon.com/images/M/MV5BYWQ2NzQ1NjktMzNkNS00MGY1LTgwMmMtYTllYTI5YzNmMmE0XkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg";
         characterDao.insertAll(jamesBond);
 
         Character gandalf = new Character();
@@ -103,6 +103,7 @@ public class Characters {
         harryPotter.series = "Harry Potter";
         harryPotter.worth = 5;
         harryPotter.pictureLink = "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg";
+        characterDao.insertAll(harryPotter);
 
         Character blue = new Character();
         blue.name = "Blue";
@@ -110,6 +111,7 @@ public class Characters {
         blue.series = "Jurassic World";
         blue.worth = 25;
         blue.pictureLink = "https://static.wikia.nocookie.net/p__/images/d/dd/Fallen_kingdom_blue_the_velociraptor_v3_by_sonichedgehog2-dc9x53o.png/revision/latest?cb=20180818052013&path-prefix=protagonist";
+        characterDao.insertAll(blue);
 
         Character indianaJones = new Character();
         indianaJones.name = "Indiana Jones";
@@ -117,6 +119,7 @@ public class Characters {
         indianaJones.series = "Indiana Jones";
         indianaJones.worth = 10;
         indianaJones.pictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Indianajones4.jpg/800px-Indianajones4.jpg";
+        characterDao.insertAll(indianaJones);
 
         Character obiWan = new Character();
         obiWan.name = "Obi-Wan Kenobi";
@@ -124,6 +127,7 @@ public class Characters {
         obiWan.series = "Star Wars";
         obiWan.worth = 30;
         obiWan.pictureLink = "https://static.wikia.nocookie.net/starwars/images/2/2a/He-says-the-thing.png/revision/latest/scale-to-width-down/1200?cb=20230113022153";
+        characterDao.insertAll(obiWan);
 
         Character jeffrey = new Character();
         jeffrey.name = "Jeffrey";
@@ -131,13 +135,15 @@ public class Characters {
         jeffrey.series = "Nektons - Abenteurer der Tiefe";
         jeffrey.worth = 112;
         jeffrey.pictureLink = "https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/11/4d9f09a8f877434181d559aa87244466_b-w-970.jpg.jpg";
+        characterDao.insertAll(jeffrey);
 
         Character ethanHunt = new Character();
         ethanHunt.name = "Ethan Hunt";
         ethanHunt.rarity = "epic";
         ethanHunt.series = "Mission Impossible";
         ethanHunt.worth = 50;
-        ethanHunt.pictureLink = "https://static.wikia.nocookie.net/p_/images/7/78/Ethan_Hunt%28MI-RN%29.png/revision/latest?cb=20230513140627&path-prefix=protagonist";
+        ethanHunt.pictureLink = "https://static.wikia.nocookie.net/p__/images/7/78/Ethan_Hunt_%28MI-RN%29.png/revision/latest?cb=20230513140627&path-prefix=protagonist";
+        characterDao.insertAll(ethanHunt);
 
         Character jackSparrow = new Character();
         jackSparrow.name = "Jack Sparrow";
@@ -145,6 +151,7 @@ public class Characters {
         jackSparrow.series = "Pirates of the Caribbean";
         jackSparrow.worth = 15;
         jackSparrow.pictureLink = "https://static.wikia.nocookie.net/great-characters/images/d/d8/Jacksparrow.jpeg/revision/latest/thumbnail/width/360/height/360?cb=20190323132109";
+        characterDao.insertAll(jackSparrow);
 
         Character johnWick = new Character();
         johnWick.name = "John Wick";
@@ -152,6 +159,7 @@ public class Characters {
         johnWick.series = "John Wick";
         johnWick.worth = 34;
         johnWick.pictureLink = "https://hips.hearstapps.com/hmg-prod/images/mh-9-22-wick-650dcf0aeb656.jpg?crop=0.447xw:0.895xh;0,0&resize=640:*";
+        characterDao.insertAll(johnWick);
 
         Character benjiDunn = new Character();
         benjiDunn.name = "Benji Dunn";
@@ -159,6 +167,7 @@ public class Characters {
         benjiDunn.series = "Mission Impossible";
         benjiDunn.worth = 10;
         benjiDunn.pictureLink = "https://pbs.twimg.com/profile_images/833761819776917508/ShSZmZdH_400x400.jpg";
+        characterDao.insertAll(benjiDunn);
 
         Character lukeSkywalker = new Character();
         lukeSkywalker.name = "Luke Skywalker";
@@ -166,6 +175,7 @@ public class Characters {
         lukeSkywalker.series = "Star Wars";
         lukeSkywalker.worth = 8;
         lukeSkywalker.pictureLink = "https://static.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg/revision/latest?cb=20230113022153";
+        characterDao.insertAll(lukeSkywalker);
 
         Character hiccup = new Character();
         hiccup.name = "Hiccup";
@@ -173,6 +183,7 @@ public class Characters {
         hiccup.series = "How to train your dragon";
         hiccup.worth = 25;
         hiccup.pictureLink = "https://i1.sndcdn.com/avatars-H4JpjNnoqqpAMbvU-yFGcpQ-t500x500.jpg";
+        characterDao.insertAll(hiccup);
 
         Character jakeSully = new Character();
         jakeSully.name = "Jake Sully";
@@ -180,6 +191,14 @@ public class Characters {
         jakeSully.series = "Avatar";
         jakeSully.worth = 10;
         jakeSully.pictureLink = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Jake_Sully.jpg/200px-Jake_Sully.jpg";
+        characterDao.insertAll(jakeSully);
 
+        Character jackWilder = new Character();
+        jackWilder.name = "Jack Wilder";
+        jackWilder.rarity = "common";
+        jackWilder.series = "Now you see me";
+        jackWilder.worth = 10;
+        jackWilder.pictureLink = "https://i.quotev.com/fu7gs3gyaaaa.jpg";
+        characterDao.insertAll(jackWilder);
     }
 }
