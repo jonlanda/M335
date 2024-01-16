@@ -51,14 +51,6 @@ public class UserService extends Service {
         }
     }
 
-    public List<String> getOwnedCharacterNames(List<Character> characters) {
-        List<String> names = new ArrayList<>();
-        for (Character character : characters) {
-            names.add(character.name);
-        }
-        return names;
-    }
-
     public void updateMoney(int id, int amount) {
         try{
             AppDatabase.getInstance(this).userDao().updateMoney(id, amount);

@@ -45,4 +45,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.work:work-runtime:2.9.0")
+    implementation("androidx.test:runner:1.5.2")
+    implementation("androidx.test:rules:1.5.0")
+    implementation("org.mockito:mockito-android:3.8.0")
 }

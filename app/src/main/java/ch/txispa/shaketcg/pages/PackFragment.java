@@ -168,10 +168,12 @@ public class PackFragment extends Fragment {
         TextView money = getView().findViewById(R.id.moneyAccount);
         AsyncTask.execute(() -> {
             User user = userService.getUser();
-            int accountWorth = user.getMoney();
-            getActivity().runOnUiThread(() -> {
-                money.setText("You have: $" + accountWorth);
-            });
+            if(user != null) {
+                int accountWorth = user.getMoney();
+                getActivity().runOnUiThread(() -> {
+                    money.setText("You have: $" + accountWorth);
+                });
+            }
         });
     }
 }
